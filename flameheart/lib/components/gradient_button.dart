@@ -27,15 +27,11 @@ class GradientButton extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Nunito-Regular',
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             addHorizontalSpace(5),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white,
-              size: 14,
-            ),
+            
           ],
         ),
       ),

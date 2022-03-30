@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
-  String validateEmail(String? value) {
+   validateEmail(String? value) {
     String pattern =
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (value == null || value.isEmpty || !regex.hasMatch(value)) {
       return 'Enter a valid email address';
     } else {
-      return '';
+      return null;
     }
   }
 
@@ -53,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
               Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+            
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: DelayedDisplay(
                         delay: initialDelay,
                         child: Icon(
-                          LineIcons.arrowCircleLeft,
+                          LineIcons.arrowLeft,
                           size: 35,
                         ),
                       ),
@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     addVerticalSpace(10),
                     DelayedDisplay(
-                      delay: Duration(milliseconds: 800),
+                      delay: Duration(milliseconds: 600),
                       child: TextFormField(
                         onChanged: (value) {
                           //Do something with the user input.
@@ -129,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     addVerticalSpace(30),
                     DelayedDisplay(
-                      delay: Duration(milliseconds: 1000),
+                      delay: Duration(milliseconds: 700),
                       child: TextFormField(
                         onChanged: (value) {
                           //Do something with the user input.
@@ -194,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     addVerticalSpace(30),
                     DelayedDisplay(
-                      delay: Duration(milliseconds: 1200),
+                      delay: Duration(milliseconds: 900),
                       child: GradientButton(
                         onTap: () {
                           final isValidForm = _formKey.currentState!.validate();

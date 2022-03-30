@@ -4,10 +4,12 @@ import 'package:flameheart/components/gradient_button.dart';
 import 'package:flameheart/components/intro_component.dart';
 import 'package:flameheart/components/outline_button.dart';
 import 'package:flameheart/constants.dart';
+import 'package:flameheart/google_sign_in.dart';
 import 'package:flameheart/screens/intro/auth_screen/signup.dart';
 import 'package:flameheart/utils/helper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class IntroBody extends StatefulWidget {
   @override
@@ -61,41 +63,56 @@ class _IntroBodyState extends State<IntroBody> {
           ),
           Expanded(
             flex: 2,
-            child: Column(
-              children: [
-                addVerticalSpace(10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                  child: Row(
-                    children: List.generate(
-                      introData.length,
-                      (index) => buildDot(index: index),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Column(
+                children: [
+                  addVerticalSpace(10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                    child: Row(
+                      children: List.generate(
+                        introData.length,
+                        (index) => buildDot(index: index),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 35.0, vertical: 10),
-                  child: OulineButtonContainer(
-                    onPressed: (){},
-                    image: 'assets/images/google.png',
-                    text: 'Continue with Google',
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 35.0, vertical: 10),
+                          child: OulineButtonContainer(
+                            onPressed: () {
+
+                              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                              provider.googleLogin();
+
+
+                            },
+                            image: 'assets/images/google.png',
+                            text: 'Continue with Google',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 35.0, vertical: 10),
+                          child: SignUpButtonWithEmail(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return SignUpScreen();
+                              }));
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 35.0, vertical: 10),
-                  child: SignUpButtonWithEmail(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return SignUpScreen();
-                      }));
-                    },
-                  ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ],
