@@ -82,20 +82,11 @@ class _IntroBodyState extends State<IntroBody> {
                     text: 'Continue with Google',
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 35.0,
-                  ),
-                  child: OulineButtonContainer(
-                    onPressed: (){},
-                    image: 'assets/images/facebook.png',
-                    text: 'Continue with Facebook',
-                  ),
-                ),
+              
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 35.0, vertical: 10),
-                  child: GradientButton(
+                  child: SignUpButtonWithEmail(
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
