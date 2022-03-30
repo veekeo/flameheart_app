@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "228789697897",
+    "project_id": "flameheart-e72bf",
+    "storage_bucket": "flameheart-e72bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228789697897:android:6f99ac3607519e1e81d1f8",
+        "android_client_info": {
+          "package_name": "com.example.flameheart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228789697897-8jmsrkb2tj7fstogdorl2i9gcc32tcev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flameheart",
+            "certificate_hash": "b0cea15e38faea2a9c8925e271daf7d973ee53ed"
+          }
+        },
+        {
+          "client_id": "228789697897-op3skm647a3q1mibrecivb6ecmlcpsmd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFxby3WAg_cNgSU_GEPcLbB9cMWdSdr98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228789697897-op3skm647a3q1mibrecivb6ecmlcpsmd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
