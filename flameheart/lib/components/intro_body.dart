@@ -6,7 +6,7 @@ import 'package:flameheart/components/outline_button.dart';
 import 'package:flameheart/constants.dart';
 import 'package:flameheart/screens/intro/auth_screen/signup.dart';
 import 'package:flameheart/utils/helper.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 
 class IntroBody extends StatefulWidget {
@@ -77,6 +77,7 @@ class _IntroBodyState extends State<IntroBody> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 35.0, vertical: 10),
                   child: OulineButtonContainer(
+                    onPressed: (){},
                     image: 'assets/images/google.png',
                     text: 'Continue with Google',
                   ),
@@ -86,8 +87,9 @@ class _IntroBodyState extends State<IntroBody> {
                     horizontal: 35.0,
                   ),
                   child: OulineButtonContainer(
-                    image: 'assets/images/apple.png',
-                    text: 'Continue with Apple',
+                    onPressed: (){},
+                    image: 'assets/images/facebook.png',
+                    text: 'Continue with Facebook',
                   ),
                 ),
                 Padding(

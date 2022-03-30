@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.11
   stacked_firebase_auth: ^0.2.10+2
+  google_sign_in: ^5.2.4
 
  
 

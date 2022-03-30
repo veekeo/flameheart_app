@@ -157,7 +157,7 @@ packages:
     source: sdk
     version: "0.0.0"
   google_sign_in:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: google_sign_in
       url: "https://pub.dartlang.org"
