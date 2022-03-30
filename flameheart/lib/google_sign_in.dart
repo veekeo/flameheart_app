@@ -1,4 +1,4 @@
-import 'dart:html';
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +12,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   GoogleSignInAccount get user => _user!;
 
   Future googleLogin() async{
+    try{
+      
    final googleUser = await googleSignIn.signIn();
 
    if(googleUser == null) return;
@@ -25,6 +27,10 @@ class GoogleSignInProvider extends ChangeNotifier {
    );
 
     await FirebaseAuth.instance.signInWithCredential(credential);
+    }catch(e){
+      print(e.toString());
+    }
+
 
     notifyListeners();
 
