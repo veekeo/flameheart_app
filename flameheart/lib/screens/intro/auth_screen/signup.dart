@@ -1,16 +1,16 @@
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, missing_return
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, missing_return, avoid_print, unnecessary_null_comparison
 
 import 'package:flameheart/components/gradient_button.dart';
 import 'package:flameheart/components/intro_body.dart';
 import 'package:flameheart/constants.dart';
 import 'package:flameheart/screens/intro/main_screens/home_screen.dart';
+import 'package:flameheart/screens/intro/main_screens/main_screen.dart';
 import 'package:flameheart/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flameheart/screens/intro/main_screens/home_screen.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -21,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final Duration initialDelay = Duration(milliseconds: 300);
   final _formKey = GlobalKey<FormState>();
 
+  final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
 
@@ -32,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
-   validateEmail(String? value) {
+  validateEmail(String? value) {
     String pattern =
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
@@ -58,7 +59,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
               Form(
-            
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,9 +92,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       delay: Duration(milliseconds: 600),
                       child: TextFormField(
                         onChanged: (value) {
-                        setState(() {
-                          email = value;
-                        });
+                          setState(() {
+                            email = value;
+                          });
                         },
                         style: TextStyle(
                           fontFamily: 'Nunito-Regular',
@@ -139,9 +139,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       delay: Duration(milliseconds: 700),
                       child: TextFormField(
                         onChanged: (value) {
-                        setState(() {
-                          password = value;
-                        });
+                          setState(() {
+                            password = value;
+                          });
                         },
                         style: TextStyle(
                           fontFamily: 'Nunito-Regular',
@@ -205,13 +205,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     DelayedDisplay(
                       delay: Duration(milliseconds: 900),
                       child: GradientButton(
-                        onTap: () {
+                        onTap: () async {
                           final isValidForm = _formKey.currentState!.validate();
-                          if(isValidForm){
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return IntroBody();
-                            }));
-
+                          if (isValidForm) {
+                            try {
+                              final newUser =
+                                  await _auth.createUserWithEmailAndPassword(
+                                      email: email, password: password);
+                              if (newUser != null) {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return MainPage();
+                                }));
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
                           }
                         },
                       ),
