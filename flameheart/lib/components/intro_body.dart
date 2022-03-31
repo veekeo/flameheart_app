@@ -1,11 +1,14 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, unused_field
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flameheart/components/gradient_button.dart';
 import 'package:flameheart/components/intro_component.dart';
 import 'package:flameheart/components/outline_button.dart';
 import 'package:flameheart/constants.dart';
 import 'package:flameheart/google_sign_in.dart';
 import 'package:flameheart/screens/intro/auth_screen/signup.dart';
+import 'package:flameheart/screens/intro/main_screens/home_screen.dart';
+
 import 'package:flameheart/utils/helper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,18 @@ class IntroBody extends StatefulWidget {
 }
 
 class _IntroBodyState extends State<IntroBody> {
+  void handleLogin() async {
+    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+    provider.googleLogin();
+
+
+  Navigator.push(context, MaterialPageRoute(builder: ((context) {
+    return HomeScreen();
+  })));
+
+
+  }
+
   final Duration initialDelay = Duration(milliseconds: 500);
   int currentPage = 0;
   List<Map<String, String>> introData = [
@@ -86,11 +101,7 @@ class _IntroBodyState extends State<IntroBody> {
                               horizontal: 35.0, vertical: 10),
                           child: OulineButtonContainer(
                             onPressed: () {
-
-                              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                              provider.googleLogin();
-
-
+                              handleLogin();
                             },
                             image: 'assets/images/google.png',
                             text: 'Continue with Google',

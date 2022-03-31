@@ -2,12 +2,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, missing_return
 
 import 'package:flameheart/components/gradient_button.dart';
+import 'package:flameheart/components/intro_body.dart';
 import 'package:flameheart/constants.dart';
 import 'package:flameheart/screens/intro/main_screens/home_screen.dart';
 import 'package:flameheart/utils/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:flameheart/screens/intro/main_screens/home_screen.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -18,6 +20,9 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final Duration initialDelay = Duration(milliseconds: 300);
   final _formKey = GlobalKey<FormState>();
+
+  String email = '';
+  String password = '';
 
   bool isHidden = false;
 
@@ -87,7 +92,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       delay: Duration(milliseconds: 600),
                       child: TextFormField(
                         onChanged: (value) {
-                          //Do something with the user input.
+                        setState(() {
+                          email = value;
+                        });
                         },
                         style: TextStyle(
                           fontFamily: 'Nunito-Regular',
@@ -132,7 +139,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       delay: Duration(milliseconds: 700),
                       child: TextFormField(
                         onChanged: (value) {
-                          //Do something with the user input.
+                        setState(() {
+                          password = value;
+                        });
                         },
                         style: TextStyle(
                           fontFamily: 'Nunito-Regular',
@@ -200,7 +209,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           final isValidForm = _formKey.currentState!.validate();
                           if(isValidForm){
                             Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return HomeScreen();
+                                return IntroBody();
                             }));
 
                           }

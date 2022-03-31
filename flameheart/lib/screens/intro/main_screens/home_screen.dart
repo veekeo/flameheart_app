@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flameheart/screens/intro/auth_screen/signup.dart';
-import 'package:flameheart/screens/intro/main_screens/main_page.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,8 +16,10 @@ class HomeScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
+         
             return Center(child: CircularProgressIndicator(),);
           }else if(snapshot.hasData){
+         
             return MainPage();
           }else if(snapshot.hasError){
             return Center(child: Text('Something went wrong!'),);
@@ -29,6 +31,19 @@ class HomeScreen extends StatelessWidget {
      
         },
       ),
+    );
+  }
+}
+
+
+class MainPage extends StatelessWidget {
+  const MainPage({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.amber,
+      body: Center(child: Text('main page')),
     );
   }
 }
